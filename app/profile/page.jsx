@@ -3,11 +3,25 @@ import Profile from '@component/Profile'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import {produce} from "immer";
 
 const MyProfile = () => {
     const [myPosts,setMyPosts]=useState([])
     const router = useRouter();
     const {data:session}=useSession()
+
+    // const [inputlist,setInputlist]=useState([{fname:'',lname:''},])
+    // console.log(inputlist,'0000000000000000000000')
+
+    // const handelremove=(index)=>{
+    //   console.log(index,'index')
+    //   let data=[...inputlist]
+    //   // let item=data.find((itm,indx)=>indx !== index)
+    //   data.splice(index,1)
+    //   setInputlist(data)
+    // }
+
+   
     
     const handleEdit=(post)=>{
       console.log('99999999988888',post)
@@ -53,6 +67,50 @@ const MyProfile = () => {
         handleEdit={handleEdit}
         handleDelete={handleDelete}
         />
+
+
+
+        {/* <div>
+        <div>
+          {
+            inputlist?.map((item,index)=>(
+              <div style={{display:'flex',justifyContent:'space-between',gap:'4',marginTop:'10px'}}>
+                <label for="fname">First name:</label>
+                <input  type='text' name='fname'
+                 onChange={(e) => {
+                            setInputlist((ob) =>
+                              produce(ob, (v) => {
+                                v[index].fname = e.target.value;
+                              })
+                            );
+                          }}
+               
+                          />
+
+
+                <label for="fname">First name:</label>
+               <input type='text'  name='lname'  style={{marginLeft:'10px'}}
+                onChange={(e) => {
+                  setInputlist((ob) =>
+                    produce(ob, (v) => {
+                      v[index].lname = e.target.value;
+                    })
+                  );
+                }}
+              
+                />
+
+               <button onClick={()=>{handelremove(index)}} style={{marginLeft:'10px'}}>remove</button>
+                </div>
+            ))
+          }
+        </div>
+        <button onClick={()=>{
+                setInputlist([...inputlist,{fname:'',lname:''}])
+        }}>add more</button>
+        </div> */}
+
+     
     </div>
   )
 }
